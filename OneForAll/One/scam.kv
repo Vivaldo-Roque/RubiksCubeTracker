@@ -1,0 +1,150 @@
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+ScreenManagement:
+	transiton: FadeTransition()
+	Camara:
+	Solution:
+	Galeria:
+	AnimatedSolution:
+
+<Camara>:
+	name: "camara"
+	BoxLayout:
+		orientation:'vertical'
+		Label:
+			id: label1
+			text: 'Cube Face Scanner'
+		Image:
+			id: frame1
+			source:''
+		
+		BoxLayout:
+			orientation:'horizontal'
+			Button:
+				text:'SCAN'
+				on_press: root.callback()
+			Button:
+				text:'RESET'
+				on_press: root.reset()
+			Button:
+				text:'Gallery'
+				on_release: app.root.current = 'galeria'
+			Button:
+				text:'SOLUTION'
+				on_release: app.root.current = 'solution'
+				
+<Solution>:
+	name: "solution"
+	BoxLayout:
+		orientation: 'vertical'
+		Label:
+			id: bum
+			text:'Empty'
+		Button:
+			text:'SOLVE'
+			on_press: root.solver()
+		Button:
+			text: 'AnimatedSolution'
+			on_release: app.root.current = 'animated'
+		Button: 
+			text:'RETURN'
+			on_release: app.root.current = 'camara'
+			
+<Galeria>:
+	name: "galeria"
+	
+	BoxLayout:
+		orientation: 'vertical'
+		GridLayout:
+			cols:3
+			Image:
+				id: g1
+				text: 'FACE F'
+				source:"fotos/rubiks-side-F.png"
+			Image:
+				id: g2
+				text: 'FACE R'
+				source:"fotos/rubiks-side-R.png"
+			Image:
+				id: g3
+				text: 'FACE B'
+				source:"fotos/rubiks-side-B.png"
+			Image:
+				id: g4
+				text: 'FACE L'
+				source:"fotos/rubiks-side-L.png"
+			Image:
+				id: g5
+				text: 'FACE U'
+				source:"fotos/rubiks-side-U.png"
+			Image:
+				id: g6
+				text: 'FACE B'
+				source:"fotos/rubiks-side-B.png"
+		Button:
+			text: 'RETURN'
+			on_release: app.root.current = 'camara'
+			
+<AnimatedSolution>:
+	
+	name: 'animated'
+	
+	BoxLayout:
+		orientation: "vertical"
+		
+		BoxLayout:
+			
+			orientation: 'vertical'
+			
+			Label:
+				id: display
+				halign: 'center'
+				valign: 'middle'
+				text: ""
+				
+			Image:
+				id: gif
+				source: root.power
+				center: self.parent.center
+				height: 300
+				width: self.height
+				allow_stretch: True
+				anim_delay: -1
+				anim_loop: 1
+		
+		Label:
+			bold: True
+			text: root.texto
+			color: 0,0,0,1
+			background_color: 225, 225, 225, 1
+			canvas.before:
+				Color:
+					rgba: self.background_color
+				Rectangle:
+					pos: self.pos
+					size: self.size
+		
+		BoxLayout:
+			
+			orientation: "horizontal"
+			
+			Button:
+				text: "Back"
+				on_press: gif.anim_delay = 0.09
+				on_press: gif._coreimage.anim_reset(True); root.change_state1()
+			
+			Button:
+				text:'SOLUTION'
+				on_release: app.root.current = 'solution'
+			
+			Button:
+				text: "Next"
+				on_press: gif.anim_delay = 0.09
+				on_press: gif._coreimage.anim_reset(True); root.change_state()
+			
+			
+
+
+
+
+

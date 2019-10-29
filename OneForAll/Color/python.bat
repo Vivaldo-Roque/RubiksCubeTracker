@@ -1,0 +1,1 @@
+C:\Python27\python.exe rubiks-color-resolver.py --filename test-data/3x3x3-random-01.txt

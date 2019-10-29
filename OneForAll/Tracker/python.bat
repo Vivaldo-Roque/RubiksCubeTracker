@@ -1,0 +1,1 @@
+C:\Python27\python.exe rubiks-cube-tracker.py --directory test/test-data/3x3x3-random-01/
